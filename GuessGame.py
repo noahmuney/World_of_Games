@@ -1,14 +1,12 @@
 from random import randint
 
-from main_game import diff
 
-
-def generate_number():
-    secret_number = randint(0, diff + 1)
+def generate_number(diff):
+    secret_number = randint(1, diff)
     return secret_number
 
 
-def get_guess_from_user():
+def get_guess_from_user(diff):
     valid_guess = False
     while not valid_guess:
         guess = input(f"Please guess a number between 1 and {diff}: ")
@@ -28,10 +26,12 @@ def compare_results(a, b):
         return False
 
 
-def play():
-    win = compare_results(generate_number(), get_guess_from_user())
+def play(diff):
+    a = generate_number(diff)
+    b = get_guess_from_user(diff)
+    win = compare_results(a, b)
     if win is True:
-        print("You Win!")
+        print(f"You Win!\nThe answer was {a}")
     else:
-        print("You Lose!")
+        print(f"You Lose!\nThe answer was {a}")
     return win

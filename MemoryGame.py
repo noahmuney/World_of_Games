@@ -1,15 +1,15 @@
 from random import sample
 from time import sleep
-from main_game import diff
 
 
-def generate_sequence():
+def generate_sequence(diff):
     seq = sample(range(0, 102), diff)
     return seq
 
 
 def get_list_from_user():
-    usr_list = [int(x) for x in input("What was the sequence?\n").split(', ')]
+    usr_list = [int(x) for x in input("What was the sequence?\n"
+                                      "If you remember, enter the numbers separated by a comma.\n").split(', ')]
     return usr_list
 
 
@@ -20,15 +20,19 @@ def is_list_equal(a, b):
         return False
 
 
-def play():
-    seq = generate_sequence()
+def play(diff):
+    print("Get Ready!\nThe game will start in 3 seconds.")
+    sleep(3)
+    seq = generate_sequence(diff)
     print(seq)
-    sleep(0.7)
+    sleep(1)
     print("\n" * 100)
-    win = is_list_equal(get_list_from_user(), seq)
+    try:
+        win = is_list_equal(get_list_from_user(), seq)
+    except ValueError:
+        win = False
     if win is True:
         print("You Win!")
     else:
-        print("You Lose!")
+        print(f"You Lose!\nThe sequence was {seq}.")
     return win
-

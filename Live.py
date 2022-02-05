@@ -1,3 +1,8 @@
+import MemoryGame
+import GuessGame
+import CurrencyRouletteGame
+
+
 def welcome(name):
     print(f"Hello {name} and welcome to the World of Games (WoG). Here you can find many cool games to play")
 
@@ -9,7 +14,7 @@ def load_game():
                      "1. Memory Game - A sequence of numbers will appear for one second and you'll need to correctly "
                      "remember it\n"
                      "2. Guessing Game - Try to guess the computer's number\n"
-                     "3. Currency Roulette - Try to guess the value of a random amount of USD in ILS\n Your choice: ")
+                     "3. Currency Roulette - Try to guess the value of a random amount of USD in NIS\n Your choice: ")
         if game.isdigit() is True and 0 < int(game) < 4:
             valid_game = True
             game = int(game)
@@ -32,4 +37,9 @@ def load_game():
         else:
             print("Invalid Input\nPlease enter a number between 1 and 5")
             valid_diff = False
-    return game, diff
+    if game == 1:
+        MemoryGame.play(diff)
+    elif game == 2:
+        GuessGame.play(diff)
+    elif game == 3:
+        CurrencyRouletteGame.play(diff)
