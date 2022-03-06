@@ -1,7 +1,7 @@
 import MemoryGame
 import GuessGame
 import CurrencyRouletteGame
-
+import Score
 
 def welcome(name):
     print(f"Hello {name} and welcome to the World of Games (WoG). Here you can find many cool games to play")
@@ -38,8 +38,10 @@ def load_game():
             print("Invalid Input\nPlease enter a number between 1 and 5")
             valid_diff = False
     if game == 1:
-        MemoryGame.play(diff)
+        win = MemoryGame.play(diff)
     elif game == 2:
-        GuessGame.play(diff)
+       win = GuessGame.play(diff)
     elif game == 3:
-        CurrencyRouletteGame.play(diff)
+       win = CurrencyRouletteGame.play(diff)
+    if win:
+        Score.add_score(diff)
